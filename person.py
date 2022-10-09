@@ -1,14 +1,16 @@
 from datetime import date
 
-class Person:
 
+class Person:
     def __init__(self, name, sex, year_of_birth, city):
         self.name = name
         self.sex = sex
         self.year_of_birth = year_of_birth
-        self._age = date.today().year - self.year_of_birth
+        self._age = self.get_age()
         self.city = city
 
+    def get_age(self):
+        return date.today().year - self.year_of_birth
 
     def eat(self):
         return 'I can eat.'
@@ -25,7 +27,7 @@ class Person:
 
 class Employee(Person):
 
-    def __init__(self, name, sex, year_of_birth, city, company, departament, position ):
+    def __init__(self, name, sex, year_of_birth, city, company, departament, position):
         super().__init__(name, sex, year_of_birth, city)
         self.company = company
         self.departament = departament
@@ -35,16 +37,19 @@ class Employee(Person):
         return 'I can work.'
 
     def info(self):
-        print(f'name: {self.name}, '
-              f'sex: {self.sex}, '
-              f'age: {self._age}, '
-              f'city: {self.city}, '
-              f'company: {self.company}, '
-              f'departament: {self.departament} '
-              f'position: {self.position}')
+        Person.info(self)
+        print(
+            # f'name: {self.name}, '
+            #       f'sex: {self.sex}, '
+            #       f'age: {self._age}, '
+            #       f'city: {self.city}, '
+            f'company: {self.company}, '
+            f'departament: {self.departament} '
+            f'position: {self.position}')
 
 class Developer(Employee):
     defolt_departament = 'development departament'
+
     def __init__(self, name, sex, year_of_birth, city, company, position, language):
         super().__init__(name, sex, year_of_birth, city, company, Developer.defolt_departament, position)
         self.language = language
@@ -63,7 +68,6 @@ class Developer(Employee):
               f'language: {self.language}')
 
 
-
 personBob = Person('Bob', 'M', 1976, 'London')
 personBob.info()
 # print(personBob.name, personBob.sex, personBob._age, personBob.city, personBob.eat())
@@ -74,7 +78,7 @@ personLi.info()
 
 employee1 = Employee('Tina', 'F', 1980, 'Vena', 'ABC', 'administrative department', 'Manager')
 employee1.info()
-# print(employee1.name, employee1.sex, employee1._age, employee1.city, employee1.company, employee1.position, employee1.eat(), employee1.work())
+print(employee1.name, employee1.sex, employee1._age, employee1.city, employee1.company, employee1.position, employee1.eat(), employee1.work())
 
 developer1 = Developer('Den', 'M', 1975, 'San Diego', 'ITCod', 'developer', 'C++')
 developer1.info()

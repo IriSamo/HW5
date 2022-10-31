@@ -91,3 +91,4 @@ developer2.info()
 developer3 = Developer('Sem', 'M', 1988, 'Mumbai', 'MIX', 'intern', 'Python')
 developer3.info()
 # print(developer3.name, developer3.sex, developer3._age, developer3.city, developer3.company, developer3.position, developer3.walk(), developer3.work())
+#
